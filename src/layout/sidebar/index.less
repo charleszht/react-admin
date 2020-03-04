@@ -1,0 +1,33 @@
+@import '../../styles/variables.less';
+
+.menu {
+  background: @menuBg;
+  border-right: 0;
+  .ant-menu-item, .ant-menu-submenu-title {
+    margin: 0 !important;
+    color: @menuItemText;
+    a {
+      color: @menuItemText;
+    }
+    &:hover {
+      color: @menuItemActiveText;
+    }
+  }
+  .ant-menu-item-active {
+    a {
+      color: @menuItemActiveText;
+    }
+  }
+  .ant-menu-item-selected {
+    background-color: @menuItemActive !important;
+    a {
+      color: @menuItemActiveText;
+    }
+  }
+  .ant-menu-submenu {
+    .ant-menu-sub {
+      background-color: @menuSubitemBg !important;
+      color: @menuItemActiveText;
+    }
+  }
+}
