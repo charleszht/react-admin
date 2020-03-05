@@ -13,33 +13,33 @@ const columns = [
   {
     align: 'center',
     title: '标题',
-    dataIndex: 'articleTitle',
+    dataIndex: 'title',
     ellipsis: true,
     width: '200px'
   },
   {
     align: 'center',
     title: '简介',
-    dataIndex: 'articleDesc',
+    dataIndex: 'description',
     ellipsis: true,
     width: '800px'
   },
   {
     align: 'center',
     title: '浏览',
-    dataIndex: 'articleViews',
+    dataIndex: 'views',
     width: '80px'
   },
   {
     align: 'center',
     title: '点击',
-    dataIndex: 'articleLikes',
+    dataIndex: 'likes',
     width: '80px'
   },
   {
     align: 'center',
     title: '更新时间',
-    dataIndex: 'articleUpdateTime',
+    dataIndex: 'updateTime',
     width: '180px'
   },
   {
