@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       env:
-        CI: true
+        CI: true 
     - name: Deoploy to Server
       uses: easingthemes/ssh-deploy@v2.0.7
       env:
