@@ -4,7 +4,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import Editor from 'for-editor'
 import './index.less'
 import { uploadFile } from '@/api/file'
-import { publish } from '@/api/article'
+// import { publish } from '@/api/article'
 
 
 class ArticleAdd extends React.Component {
