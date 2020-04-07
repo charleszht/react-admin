@@ -15,7 +15,6 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - name: Checkout
     - uses: actions/checkout@v2
       env:
         CI: true
