@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined, GithubFilled } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import './index.less'
@@ -12,8 +13,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      remember: true,
-      complete: false
+      remember: true
     }
     this.rememberPwd = this.rememberPwd.bind(this)
     this.jumpGitHub = this.jumpGitHub.bind(this)
@@ -48,21 +48,27 @@ class Login extends React.Component {
     })
   }
   render () {
-    const { complete } = this.state
     return (
       <div className="login-box">
-        <div className="login-form">
-          <div className="input-wrap">
-            <input placeholder="用户名" />
-          </div>
-          <div className="input-wrap">
-            <input placeholder="密码" />
-          </div>
-          {
-            complete ? <button className="login-btn">登  录</button> : null
-          }
-          
-        </div>
+        <Form className="login-form" onFinish={ this.handleLogin }>
+          <h1>Login</h1>
+          <Form.Item name="login" rules={[{ required: true, message: '请输入用户名' }]}>
+            <Input prefix={ <UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} /> } placeholder="用户名" size="large" />
+          </Form.Item>
+          <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
+            <Input.Password prefix={ <LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} /> } placeholder="密码" autoComplete="true" size="large" />
+          </Form.Item>
+          <Form.Item className="login-form-action">
+            <Checkbox className="login-form-remember" checked={ this.state.remember } onChange={ this.rememberPwd }>记住密码</Checkbox>
+            <Link className="login-form-forgot" to="/forgot">忘记密码?</Link>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-form-button" size="large">登录</Button>
+          </Form.Item>
+          <Form.Item className="other-login-type">
+            <GithubFilled style={{ color: '#fff', fontSize: '35px' }} onClick={ this.jumpGitHub } />
+          </Form.Item>
+        </Form>
       </div>
     )
   }
