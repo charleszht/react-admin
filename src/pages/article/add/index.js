@@ -15,14 +15,16 @@ class ArticleAdd extends React.Component {
       loading: false,
       mdStr: '132',
       article: {
-        articleTitle: '',
-        articleImage: '',
-        articleMarkdown: '',
-        articleContent: ''
-      }
+        title: '',
+        image: '',
+        markdown: '',
+        content: ''
+      },
+      openFileDialog: false
     }
     this.uploadFile = this.uploadFile.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleTitleChange = this.handleTitleChange.bind(this)
     this.publishArticle = this.publishArticle.bind(this)
   }
   uploadFile = (params) => {
@@ -35,9 +37,7 @@ class ArticleAdd extends React.Component {
       if (res.code === 200) {
         this.setState({
           loading: false,
-          article: {
-            articleImage: res.data
-          }
+          article: { ...this.state.article, image: res.data }
         })
         message.success(res.message)
       }
@@ -45,11 +45,12 @@ class ArticleAdd extends React.Component {
   }
   handleChange = (value) => {
     console.log(value)
-    // this.setState({
-    //   article: {
-    //     art
-    //   }
-    // })
+  }
+  handleTitleChange = (changedFields, allFields) => {
+    const { title } = allFields
+    this.setState({
+      article: { ...this.state.article, title: title ? title : '' }
+    })
   }
   publishArticle = (e) => {
     console.log(e)
@@ -59,22 +60,39 @@ class ArticleAdd extends React.Component {
     //   }
     // })
   }
+  uploadArticle = (params) => {
+    const formData = new FormData()
+    formData.append('file', params.file)
+  }
+  validateParams = () => {
+    const { article } = this.state
+    console.log(article)
+    if (!article.title) {
+      message.error('请输入文章标题')
+    } else if (!article.image) {
+      message.error('请上传文章缩略图')
+    } else {
+      this.setState({
+        openFileDialog: true
+      })
+    }
+  }
   render () {
     return (
       <div className="content-box">
-        <Form className="article-add-form" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} onFinish={ this.publishArticle }>
-          <Form.Item label="标题" name="articleTitle" rules={[
+        <Form className="article-add-form" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} onFinish={ this.publishArticle } onValuesChange={ this.handleTitleChange }>
+          <Form.Item label="标题" name="title" rules={[
             { required: true, message: '请输入文章标题' }
           ]}>
             <Input />
           </Form.Item>
-          <Form.Item label="图片" name="articleImage" rules={[
+          <Form.Item label="图片" name="image" rules={[
             { required: true, message: '请上传缩略图' }
           ]}>
             <Upload className="image-upload" showUploadList={ false } action="" customRequest={ this.uploadFile }>
               { 
                 this.state.article.articleImage ? 
-                <img className="image-preview" src={ this.state.article.articleImage } alt={ this.state.article.articleImage } style={{ width: '100%' }} /> 
+                <img className="image-preview" src={ this.state.article.image } alt={ this.state.article.image } style={{ width: '100%' }} /> 
                 : 
                 <div>
                   {
@@ -87,7 +105,7 @@ class ArticleAdd extends React.Component {
               }
             </Upload>
           </Form.Item>
-          <Form.Item label="内容" name="articleContent" rules={[
+          <Form.Item label="内容" name="content" rules={[
             { required: true, message: '请输入文章内容' }
           ]}>
             <Editor 
@@ -99,7 +117,14 @@ class ArticleAdd extends React.Component {
           <Form.Item className="form-btns">
             <Button type="primary" htmlType="submit">发布</Button>
             <Button>取消</Button>
-            <Button type="primary">上传markdown</Button>
+            <Upload
+              showUploadList={ false } 
+              action="" 
+              customRequest={ this.uploadArticle } 
+              accept=".md"
+              openFileDialogOnClick={ this.state.openFileDialog }>
+                <Button type="primary" onClick={ this.validateParams }>上传markdown</Button>
+            </Upload>
           </Form.Item>
         </Form>
       </div>
