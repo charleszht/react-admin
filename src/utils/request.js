@@ -4,7 +4,7 @@ import { getToken } from '@/utils/auth'
 
 const service = axios.create({
   baseURL: '/api',
-  timeout: 5000
+  timeout: 500000
 })
 
 service.interceptors.request.use(

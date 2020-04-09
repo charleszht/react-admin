@@ -5,12 +5,12 @@ const theme = require('./theme')
 
 const proxyApi = {
   '/api': {
-    target: 'https://admin.yesterdaypub.cn',
+    target: 'https://api.yesterdaypub.cn',
     changeOrigin: true,
     secure: false,
     xfwd: false,
     pathRewrite: {
-      '^/api': '/api'
+      '^/api': '/'
     }
   }
 }
