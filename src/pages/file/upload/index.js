@@ -6,15 +6,8 @@ import { InboxOutlined } from '@ant-design/icons'
 
 const { Dragger } = Upload
 
-class UploadFile extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      
-    }
-    this.handleUpload = this.handleUpload.bind(this)
-  }
-  handleUpload = (params) => {
+const UploadFile = props => {
+  const handleUpload = (params) => {
     const formData = new FormData()
     formData.append('file', params.file)
     uploadFile(formData).then(res => {
@@ -23,26 +16,24 @@ class UploadFile extends React.Component {
       }
     })
   }
-  render () {
-    const config = {
-      name: 'file',
-      multiple: false,
-      action: '',
-      onChange(info) {
-        
-      }
+  const config = {
+    name: 'file',
+    multiple: false,
+    action: '',
+    onChange(info) {
+      
     }
-    return (
-      <div className="content-box">
-        <Dragger { ...config } className="drag-area" customRequest={ this.handleUpload }>
-          <p className="ant-upload-drag-icon">
-            <InboxOutlined />
-          </p>
-          <p className="ant-upload-text">将文件拖拽到此处，或点击上传</p>
-        </Dragger>
-      </div>
-    )
   }
+  return (
+    <div className="content-box">
+      <Dragger { ...config } className="drag-area" customRequest={ handleUpload }>
+        <p className="ant-upload-drag-icon">
+          <InboxOutlined />
+        </p>
+        <p className="ant-upload-text">将文件拖拽到此处，或点击上传</p>
+      </Dragger>
+    </div>
+  )
 }
 
 export default UploadFile

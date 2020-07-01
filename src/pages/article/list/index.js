@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Button } from 'antd'
 import './index.less'
 import { getList } from '@/api/article'
@@ -56,37 +56,28 @@ const columns = [
   }
 ]
 
-class ArticleList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: false
-    }
-  }
-  componentDidMount () {
-    this.getList()
-  }
-  getList = () => {
-    this.setState({
-      loading: true
-    })
+const ArticleList = props => {
+  const [loading, setLoading] = useState(false)
+  const [list, setList] = useState([])
+  // useEffect(() => {
+  //   getArticleList()
+  // }, [list])
+
+  const getArticleList = () => {
+    setLoading(true)
     getList().then(res => {
       res.data.list.forEach((item, index) => {
         item['key'] = index + 1
       })
-      this.setState({
-        list: res.data.list,
-        loading: false
-      })
+      setLoading(false)
+      setList(res.data.list)
     })
   }
-  render () {
-    return (
-      <div className="content-box">
-        <Table columns={ columns } dataSource={ this.state.list } bordered loading={ this.state.loading } size="small"></Table>
-      </div>
-    )
-  }
+  return (
+    <div className="content-box">
+      <Table columns={ columns } dataSource={ list } bordered loading={ loading } size="small"></Table>
+    </div>
+  )
 }
 
 export default ArticleList
