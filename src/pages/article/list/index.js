@@ -59,9 +59,9 @@ const columns = [
 const ArticleList = props => {
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState([])
-  // useEffect(() => {
-  //   getArticleList()
-  // }, [list])
+  useEffect(() => {
+    getArticleList()
+  }, [])
 
   const getArticleList = () => {
     setLoading(true)

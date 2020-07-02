@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Button, message } from 'antd'
 import './index.less'
 import { getList, deleteFile } from '@/api/file'
@@ -9,9 +9,11 @@ const FileList = props => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState('all')
   const [list, setList] = useState([])
-  // componentDidMount () {
-  //   this.getFileList()
-  // }
+
+  useEffect(() => {
+    getFileList()
+  }, [])
+  
   const getFileList = () => {
     setLoading(true)
     getList({ type: type }).then(res => {
