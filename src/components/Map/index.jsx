@@ -8,10 +8,6 @@ const Map = (props) => {
   const [center] = useState([39.9086, 116.3975])
   const [zoom] = useState(13)
 
-  useLayoutEffect(() => {
-    initMap()
-  },[initMap])
-
   const initMap = () => {
     const map = L.map('map', {
       center: center,
@@ -19,6 +15,10 @@ const Map = (props) => {
     })
     changeTileLayer(map, ['https://webst0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=6&x={x}&y={y}&z={z}', 'https://webst0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'])
   }
+
+  useLayoutEffect(() => {
+    initMap()
+  },[initMap])
 
   const changeTileLayer = (map, tileLayerArr) => {
     tileLayerArr.forEach(item => {

@@ -59,9 +59,7 @@ const columns = [
 const ArticleList = props => {
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState([])
-  useEffect(() => {
-    getArticleList()
-  }, [getArticleList])
+  
 
   const getArticleList = () => {
     setLoading(true)
@@ -73,6 +71,11 @@ const ArticleList = props => {
       setList(res.list)
     })
   }
+
+  useEffect(() => {
+    getArticleList()
+  }, [getArticleList])
+
   return (
     <div className="content-box">
       <Table columns={ columns } dataSource={ list } bordered loading={ loading } size="small"></Table>

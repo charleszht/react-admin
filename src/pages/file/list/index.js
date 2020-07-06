@@ -9,10 +9,6 @@ const FileList = props => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState('all')
   const [list, setList] = useState([])
-
-  useEffect(() => {
-    getFileList()
-  }, [getFileList])
   
   const getFileList = () => {
     setLoading(true)
@@ -24,6 +20,11 @@ const FileList = props => {
       setList(res)
     })
   }
+
+  useEffect(() => {
+    getFileList()
+  }, [getFileList])
+
   const deleteFileHandle = (fileName) => {
     deleteFile({ fileName: fileName }).then(res => {
       if (res.code === 200) {
