@@ -66,11 +66,11 @@ const ArticleList = props => {
   const getArticleList = () => {
     setLoading(true)
     getList().then(res => {
-      res.data.list.forEach((item, index) => {
+      res.list.forEach((item, index) => {
         item['key'] = index + 1
       })
       setLoading(false)
-      setList(res.data.list)
+      setList(res.list)
     })
   }
   return (

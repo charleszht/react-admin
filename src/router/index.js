@@ -5,6 +5,7 @@ import ArticleList from '@/pages/article/list'
 import ArticleAdd from '@/pages/article/add'
 import FileList from '@/pages/file/list'
 import FileUpload from '@/pages/file/upload'
+import MapPage from '@/pages/map'
 
 class RouterView extends React.Component {
   render () {
@@ -15,6 +16,7 @@ class RouterView extends React.Component {
         <Route path="/article/add" component={ ArticleAdd }></Route>
         <Route path="/file/list" component={ FileList }></Route>
         <Route path="/file/upload" component={ FileUpload }></Route>
+        <Route path="/map" component={ MapPage }></Route>
       </React.Fragment>
     )
   }

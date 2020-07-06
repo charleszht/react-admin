@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu } from 'antd'
-import { HomeOutlined, ReadOutlined, ProfileOutlined, GithubFilled } from '@ant-design/icons'
+import { HomeOutlined, ReadOutlined, ProfileOutlined, GithubFilled, GlobalOutlined } from '@ant-design/icons'
 import Logo from './logo'
 import './index.less'
 
@@ -41,6 +41,11 @@ const Sidebar = props => {
             <NavLink to="/file/upload">文件上传</NavLink>
           </Menu.Item>
         </SubMenu>
+        <Menu.Item>
+          <NavLink to="/map">
+            <GlobalOutlined /> 地图组件
+          </NavLink>
+        </Menu.Item>
         <Menu.Item>
           <NavLink to="/github">
             <GithubFilled /> GitHub

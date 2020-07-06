@@ -7,8 +7,6 @@
  * @LastEditTime: 2020-07-06 17:16:43
  */ 
 import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { Layout } from 'antd'
 import Sidebar from './sidebar'
 import RouterView from '@/router'
@@ -16,11 +14,7 @@ import './index.less'
 const { Header, Sider, Content } = Layout
 
 const LayoutBox = props => {
-
-  const { token } = props
-
   return (
-    token ? 
     <Layout className="container-box">
       <Sider className="side-box" width="210">
         <Sidebar />
@@ -32,13 +26,7 @@ const LayoutBox = props => {
         </Content>
       </Layout>
     </Layout>
-    : 
-    <Redirect to="/login" />
   )
 }
 
-const mapStateToProps = (state) => ({
-  token: state.token
-})
-
-export default connect(mapStateToProps, null)(LayoutBox)
+export default LayoutBox

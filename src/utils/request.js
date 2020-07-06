@@ -8,7 +8,6 @@
  */ 
 import axios from 'axios'
 import store from '@/store'
-import { getToken } from '@/utils/auth'
 
 const service = axios.create({
   baseURL: '/api',
@@ -17,8 +16,8 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    if (store.getState().token) {
-      config.headers['Authorization'] = getToken()
+    if (store.getState().user.token) {
+      config.headers['Authorization'] = store.getState().user.token
     }
     return config
   },

@@ -6,8 +6,8 @@
  * @LastEditors: 张彤
  * @LastEditTime: 2020-07-06 16:42:35
  */ 
-import { SET_TOKEN } from '../actionTypes'
-import { userLogin } from '@/api/user'
+import { SET_TOKEN, SET_USER } from '../actionTypes'
+import { userLogin, getUserInfo } from '@/api/user'
 import { push } from 'connected-react-router'
 
 export const setToken = (token) => ({
@@ -15,11 +15,26 @@ export const setToken = (token) => ({
   token
 })
 
+export const setUser = (user) => ({
+  type: SET_USER,
+  user
+})
+
 export const loginAction = (loginInfo) => {
   return (dispatch) => {
     const { username, password } = loginInfo
     userLogin({ login: username, password }).then(res => {
       dispatch(setToken(res.token))
+      dispatch(getUserAction())
+    })
+  }
+}
+
+export const getUserAction = () => {
+  return (dispatch) => {
+    getUserInfo().then(user => {
+
+      dispatch(setUser(user))
       dispatch(push('/'))
     })
   }

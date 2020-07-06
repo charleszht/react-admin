@@ -7,18 +7,26 @@
  * @LastEditTime: 2020-07-06 17:19:57
  */ 
 import React from 'react'
-import { Route, Switch, HashRouter } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
+import store, { history } from '@/store'
 import LayoutBox from '@/layout'
 import LoginPage from '@/pages/login'
 
 const App = (props) => {
+  
   return (
-    <HashRouter>
-      <Switch>
-        <Route path="/login" component={ LoginPage }></Route>
-        <Route path="/" component={ LayoutBox }></Route> 
-      </Switch>
-    </HashRouter>
+    <ConnectedRouter history={ history }>
+      <>
+        <Switch>
+          <Route path="/login" component={ LoginPage }></Route>
+          <Route path="/" render={ () => {
+            const { token } = store.getState().user
+            return token ? <LayoutBox /> : <Redirect to="/login" />
+          }}></Route> 
+        </Switch>
+      </>
+    </ConnectedRouter>
   )
 }
 

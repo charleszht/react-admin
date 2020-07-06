@@ -17,11 +17,11 @@ const FileList = props => {
   const getFileList = () => {
     setLoading(true)
     getList({ type: type }).then(res => {
-      res.data.forEach((item, index) => {
+      res.forEach((item, index) => {
         item['key'] = index + 1
       })
       setLoading(false)
-      setList(res.data)
+      setList(res)
     })
   }
   const deleteFileHandle = (fileName) => {
