@@ -10,8 +10,8 @@ const Login = (props) => {
   const [ password, setPassword ] = useState('')
 
   const { login } = props
+  
   useEffect(() => {}, [username, password])
-  console.log(123)
 
   return (
     <div className="login-page">
@@ -55,7 +55,7 @@ const Login = (props) => {
               </div>
             </div>
             <Link className="to-regist" to="/regist">Forgot Password</Link>
-            <button className="btn" onClick={ login({ username, password }) }>Login</button>
+            <button className="btn" onClick={ () => { login({ username, password }) } }>Login</button>
           </div>
         </div>
       </div>

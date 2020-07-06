@@ -1,28 +1,22 @@
+/*
+ * @Descripttion: coding...
+ * @Version: 1.0.0版本
+ * @Author: 张彤
+ * @Date: 2020-03-04 17:50:01
+ * @LastEditors: 张彤
+ * @LastEditTime: 2020-07-06 13:59:26
+ */ 
 import React from 'react'
 import { connect } from 'react-redux'
-import store from '@/store'
-import { loginAction, userInfoAction } from '@/store/actionCreators'
-import { userLogin, getUserInfo } from '@/api/user'
-import { setToken } from '@/utils/auth'
+import { loginAction } from '@/store/actions/user'
 import Login from '@/components/Login'
 
 const LoginPage = (props) => {
 
-  const getUser = () => {
-    getUserInfo().then(res => {
-      if (res.code === 200) {
-        const action = userInfoAction(res.data)
-        store.dispatch(action)
-      }
-    })
-  }
-
-  const loginHandle = (loginInfo) => {
-    props.toLogin(loginInfo)
-  }
+  const { toLogin } = props
 
   return (
-    <Login login={ loginHandle } />
+    <Login login={ toLogin } />
   )
 
 }
@@ -33,10 +27,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toLogin(data) {
-      dispatch(loginAction(data))
+    toLogin: (loginInfo) => {
+      dispatch(loginAction(loginInfo))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPage)

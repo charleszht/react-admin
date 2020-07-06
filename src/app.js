@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
-import { Provider } from 'react-redux'
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
+/*
+ * @Descripttion: coding...
+ * @Version: 1.0.0版本
+ * @Author: 张彤
+ * @Date: 2020-03-04 17:50:01
+ * @LastEditors: 张彤
+ * @LastEditTime: 2020-07-06 17:19:57
+ */ 
+import React from 'react'
+import { Route, Switch, HashRouter } from 'react-router-dom'
 import LayoutBox from '@/layout'
-import Login from '@/pages/login'
-import store from '@/store'
+import LoginPage from '@/pages/login'
 
 const App = (props) => {
-  const [token, setToken] = useState(true)
-  
   return (
-    <Provider store={ store }>
-      <HashRouter>
-        <Switch>
-          <Route path="/login" component={ Login }></Route>
-          <Route path="/" render={
-            () => {
-              return token ? <LayoutBox /> : <Redirect to="/login" />
-            }
-          }></Route> 
-        </Switch>
-      </HashRouter>
-    </Provider>
+    <HashRouter>
+      <Switch>
+        <Route path="/login" component={ LoginPage }></Route>
+        <Route path="/" component={ LayoutBox }></Route> 
+      </Switch>
+    </HashRouter>
   )
 }
 
