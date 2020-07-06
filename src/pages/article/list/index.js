@@ -61,7 +61,7 @@ const ArticleList = props => {
   const [list, setList] = useState([])
   useEffect(() => {
     getArticleList()
-  }, [])
+  }, [getArticleList])
 
   const getArticleList = () => {
     setLoading(true)

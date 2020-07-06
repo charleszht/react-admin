@@ -10,7 +10,7 @@ const Map = (props) => {
 
   useLayoutEffect(() => {
     initMap()
-  },[])
+  },[initMap])
 
   const initMap = () => {
     const map = L.map('map', {

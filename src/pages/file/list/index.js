@@ -12,7 +12,7 @@ const FileList = props => {
 
   useEffect(() => {
     getFileList()
-  }, [])
+  }, [getFileList])
   
   const getFileList = () => {
     setLoading(true)
