@@ -5,8 +5,8 @@ import 'leaflet/dist/leaflet.css'
 
 const Map = (props) => {
 
-  const [center, setCenter] = useState([39.9086, 116.3975])
-  const [zoom, setZoom] = useState(13)
+  const [center] = useState([39.9086, 116.3975])
+  const [zoom] = useState(13)
 
   useLayoutEffect(() => {
     initMap()

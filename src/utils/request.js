@@ -8,6 +8,7 @@
  */ 
 import axios from 'axios'
 import store from '@/store'
+import { message } from 'antd';
 
 const service = axios.create({
   baseURL: '/api',
@@ -30,10 +31,12 @@ service.interceptors.response.use(
   response => {
     const res = response.data
     console.log(response.data)
-    const { code, data, message } = response.data
+    const { code, data, message: msg } = response.data
     if (code === 200) {
+      message.success(msg)
       return data
     } else {
+      message.error(msg)
       return res
     }
   },

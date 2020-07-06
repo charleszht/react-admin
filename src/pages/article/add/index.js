@@ -4,13 +4,10 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons'
 import Editor from 'for-editor'
 import './index.less'
 import { uploadFile } from '@/api/file'
-// import { publish } from '@/api/article'
-
 
 const ArticleAdd = props => {
-  const [imageUrl, setImageUrl] = useState('')
+  
   const [loading, setLoading] = useState(false)
-  const [mdStr, setMdStr] = useState('132')
   const [article, setArticle] = useState({
     title: '',
     image: '',
