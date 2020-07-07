@@ -74,7 +74,7 @@ const ArticleList = props => {
 
   useEffect(() => {
     getArticleList()
-  }, [getArticleList])
+  }, [])
 
   return (
     <div className="content-box">

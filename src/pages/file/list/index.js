@@ -23,7 +23,7 @@ const FileList = props => {
 
   useEffect(() => {
     getFileList()
-  }, [getFileList])
+  }, [])
 
   const deleteFileHandle = (fileName) => {
     deleteFile({ fileName: fileName }).then(res => {

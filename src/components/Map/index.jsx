@@ -1,7 +1,9 @@
 import React, { useLayoutEffect, useState } from 'react'
 import './index.less'
 import L from 'leaflet'
+import 'leaflet.awesome-markers'
 import 'leaflet/dist/leaflet.css'
+import 'leaflet.awesome-markers/dist/leaflet.awesome-markers.css'
 
 const Map = (props) => {
 
@@ -14,11 +16,17 @@ const Map = (props) => {
       zoom: zoom
     })
     changeTileLayer(map, ['https://webst0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=6&x={x}&y={y}&z={z}', 'https://webst0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'])
+    L.marker([39.9086, 116.3975], { icon: L.AwesomeMarkers.icon({
+      prefix: 'fa',
+      icon: 'spinner',
+      markerColor: 'red',
+      spin: true
+    })}).addTo(map)
   }
 
   useLayoutEffect(() => {
     initMap()
-  },[initMap])
+  })
 
   const changeTileLayer = (map, tileLayerArr) => {
     tileLayerArr.forEach(item => {
@@ -27,6 +35,7 @@ const Map = (props) => {
         subdomains: ['1', '2', '3', '4']
       }).addTo(map)
     })
+    
   }
 
   return (<div id="map" className="map-component"></div>)

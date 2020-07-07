@@ -6708,6 +6708,11 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
+leaflet.awesome-markers@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npm.taobao.org/leaflet.awesome-markers/download/leaflet.awesome-markers-2.0.5.tgz#b7b0210d87e2566359bf478c1ab3ab07c7246f30"
+  integrity sha1-t7AhDYfiVmNZv0eMGrOrB8ckbzA=
+
 leaflet@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npm.taobao.org/leaflet/download/leaflet-1.6.0.tgz#aecbb044b949ec29469eeb31c77a88e2f448f308"
