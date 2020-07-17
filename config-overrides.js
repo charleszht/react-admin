@@ -4,7 +4,7 @@
  * @Author: 张彤
  * @Date: 2020-03-04 17:50:01
  * @LastEditors: 张彤
- * @LastEditTime: 2020-06-28 12:47:35
+ * @LastEditTime: 2020-07-10 11:02:13
  */ 
 const { override, fixBabelImports, addLessLoader, addWebpackAlias } = require('customize-cra')
 const path = require('path')
@@ -19,6 +19,15 @@ const proxyApi = {
     xfwd: false,
     pathRewrite: {
       '^/api': '/'
+    }
+  },
+  '/mygeo': {
+    target: 'https://geoserver.zhangtong.work',
+    changeOrigin: true,
+    secure: false,
+    xfwd: false,
+    pathRewrite: {
+      '^/mygeo': '/'
     }
   }
 }
